@@ -77,6 +77,8 @@ function clone_or_update_repository(config, path, repo, hash = nothing)
         end
         if update_needed
             try
+                # Update the remote URL, in case the repository has moved.
+                run(`$git remote set-url origin $(repo)`)
                 run(`$git remote update`)
             catch e
                 @error "Failed to update $(repo)." error = e
