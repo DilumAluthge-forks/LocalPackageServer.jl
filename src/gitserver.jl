@@ -101,6 +101,7 @@ function get_resource_from_storage_server!(config, server::GitStorageServer,
     registry_dir = get_local_registry_dir(config)
     if parts[1] == "registry"
         git = gitcmd(config, registry_dir)
+        repo = server.url
         uuid = parts[2]
         hash = parts[3]
         uuid != server.uuid && return false
